@@ -68,7 +68,19 @@ const Dashboard = () => {
             </Paper>
           </Grid>
           <Grid item xs={3}>
-          
+            {/*    <Paper elevation={3} style={{ padding: 20 }}>
+            <img
+              src={newUsers}
+              alt="New Users"
+              style={{ width: 100, height: 100, marginRight: 30 }}
+            />
+              <Typography variant="h6"  style={{ fontWeight: 'bold',textAlign: 'right' }}>
+                1.35m
+              </Typography>
+              <Typography variant="body1" style={{ fontWeight: 'bold' ,textAlign: 'right'}}>
+               New Users
+              </Typography>
+            </Paper> */}
             <Paper
               elevation={3}
               style={{ padding: 20, display: "flex", alignItems: "center" }}
