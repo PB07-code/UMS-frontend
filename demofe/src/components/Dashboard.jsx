@@ -1,74 +1,62 @@
-import { Grid, Paper, Typography, Drawer, List, ListItem, ListItemText, ListItemIcon,Avatar } from '@mui/material';
-import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PeopleIcon from '@mui/icons-material/People';
-import sparLogo from '../assets/sparLogo.jpg';
-import newUsers from '../assets/newUsers.png';
+import { Grid, Paper, Typography } from "@mui/material";
+import newUsers from "../assets/newUsers.png";
+import glass_bag from "../assets/glass_bag.png";
+import glass_orders from "../assets/glass_orders.png";
+import glass_bugreports from "../assets/glass_bugreports.png";
+import ClippedDrawer from "./ClippedDrawer";
 
 
-const drawerWidth = 240;
 
 const Dashboard = () => {
   return (
-    <div style={{ display: "flex" }}>
-      {/* Permanent Sidebar */}
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-          },
-        }}
-        anchor="left"
-      >
-        <List>
-        
-          <ListItem sx={{ justifyContent: "center", paddingBottom: 0 }}>
-          <Avatar alt={name} src={sparLogo}  />
-
-          </ListItem>
-
-         
-
-          {/* Dashboard Link */}
-          <ListItem button component={Link} to="/dashboard">
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-
-          {/* Users Link */}
-          <ListItem button component={Link} to="/users">
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Users" />
-          </ListItem>
-        </List>
-      </Drawer>
-
+    <div style={{ display: "flex" }} >
+    
+      {/* Add a Clipped Drawer here*/}
+      <ClippedDrawer/>
+     
       {/* Main Content */}
       <div
         style={{
-          marginLeft: drawerWidth,
-          padding: "20px",
-          width: `calc(100% - ${drawerWidth}px)`,
+       
+          padding: "30px",
+         
         }}
       >
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Paper elevation={3} style={{ padding: 20 }}>
-              <Typography variant="h4" gutterBottom>
-                Hi, Welcome back 👋
-              </Typography>
-              <Typography variant="body1">Dashboard</Typography>
+            <Typography variant="h4" gutterBottom>
+              Hi, Welcome back 👋
+            </Typography>
+            {/* <Typography variant="body1">Dashboard</Typography> */}
+          </Grid>
+
+          {/* Weekly Sales */}
+          <Grid item xs={3}>
+            <Paper
+              elevation={3}
+              style={{ padding: 20, display: "flex", alignItems: "center" }}
+            >
+              <img
+                src={glass_bag}
+                alt="Weekly Sales"
+                style={{ width: 100, height: 100, marginRight: 30 }}
+              />
+              <div style={{ flexGrow: 1, textAlign: "right" }}>
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                  714k
+                </Typography>
+                <Typography
+                  variant="body1"
+                  style={{ fontWeight: "bold", color: "rgb(145, 158, 171)" }}
+                >
+                  Weekly Sales
+                </Typography>
+              </div>
             </Paper>
           </Grid>
+
+          {/* New Users */}
           <Grid item xs={3}>
-          
             <Paper
               elevation={3}
               style={{ padding: 20, display: "flex", alignItems: "center" }}
@@ -79,43 +67,66 @@ const Dashboard = () => {
                 style={{ width: 100, height: 100, marginRight: 30 }}
               />
               <div style={{ flexGrow: 1, textAlign: "right" }}>
-                <Typography variant="h6" style={{ fontWeight: "bold" }}>
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
                   1.35m
                 </Typography>
-                <Typography variant="body1" style={{ fontWeight: "bold" }}>
+                <Typography
+                  variant="body1"
+                  style={{ fontWeight: "bold", color: "rgb(145, 158, 171)" }}
+                >
                   New Users
                 </Typography>
               </div>
             </Paper>
           </Grid>
+
+          {/* Item Orders */}
           <Grid item xs={3}>
-            <Paper elevation={3} style={{ padding: 20 }}>
-              <Typography variant="h6" gutterBottom>
-                5
-              </Typography>
-              <Typography variant="body1">
-               Deleted Users
-              </Typography>
+            <Paper
+              elevation={3}
+              style={{ padding: 20, display: "flex", alignItems: "center" }}
+            >
+              <img
+                src={glass_orders}
+                alt="Item Orders"
+                style={{ width: 100, height: 100, marginRight: 30 }}
+              />
+              <div style={{ flexGrow: 1, textAlign: "right" }}>
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                  1.72m
+                </Typography>
+                <Typography
+                  variant="body1"
+                  style={{ fontWeight: "bold", color: "rgb(145, 158, 171)" }}
+                >
+                  Item Orders
+                </Typography>
+              </div>
             </Paper>
           </Grid>
+
+          {/* Bug Reports */}
           <Grid item xs={3}>
-            <Paper elevation={3} style={{ padding: 20 }}>
-              <Typography variant="h6" gutterBottom>
-                10
-              </Typography>
-              <Typography variant="body1">
-                Item Orders
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper elevation={3} style={{ padding: 20 }}>
-              <Typography variant="h6" gutterBottom>
-                3
-              </Typography>
-              <Typography variant="body1">
-               Bug Reports
-              </Typography>
+            <Paper
+              elevation={3}
+              style={{ padding: 20, display: "flex", alignItems: "center" }}
+            >
+              <img
+                src={glass_bugreports}
+                alt="Bug Reports"
+                style={{ width: 100, height: 100, marginRight: 30 }}
+              />
+              <div style={{ flexGrow: 1, textAlign: "right" }}>
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                  234
+                </Typography>
+                <Typography
+                  variant="body1"
+                  style={{ fontWeight: "bold", color: "rgb(145, 158, 171)" }}
+                >
+                  Bug Reports
+                </Typography>
+              </div>
             </Paper>
           </Grid>
         </Grid>
