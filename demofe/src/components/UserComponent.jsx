@@ -3,6 +3,7 @@ import { Typography, TextField, Button, Container, Grid } from '@mui/material';
 import { createUser, getUser, updateUser } from '../services/UserService';
 import { useNavigate, useParams } from 'react-router-dom';
 
+
 const UserComponent = () => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -61,7 +62,9 @@ const UserComponent = () => {
   };
 
   return (
+   
     <Container maxWidth="md">
+     
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12}>
           {pageTitle()}

@@ -4,6 +4,7 @@ import { listUsers, deleteUser } from "../services/UserService";
 import { useNavigate } from 'react-router-dom';
 
 const ListUserComponent = () => {
+  
   const [users, setUsers] = useState([]);
   const navigator = useNavigate();
 
@@ -77,6 +78,7 @@ const ListUserComponent = () => {
         </Table>
       </TableContainer>
     </div>
+    
   );
 };
 
