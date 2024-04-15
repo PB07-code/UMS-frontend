@@ -13,7 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
-import sparLogo from "../assets/sparLogo.jpg";
+import Logo from "../assets/Logo.jpg";
 
 const drawerWidth = 240;
 
@@ -46,7 +46,7 @@ export default function ClippedDrawer() {
         <Box sx={{ overflow: "auto" }}>
           <List>
             <ListItem sx={{ justifyContent: "center", paddingBottom: 0 }}>
-              <Avatar alt={name} src={sparLogo} />
+                       <Avatar alt={name} src={Logo} />          
             </ListItem>
             <Divider />
             {/* Dashboard Link */}
