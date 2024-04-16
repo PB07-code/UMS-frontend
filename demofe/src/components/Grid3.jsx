@@ -1,6 +1,6 @@
 import { Grid, Paper, Typography } from "@mui/material";
-import PieArcLabel from "./PieArcLabel";
-import Chart from "./Chart";
+import SpiderChart from "./SpiderChart";
+import BarChart from "./BarChart";
 
 const Grid2 = () => {
   return (
@@ -10,25 +10,25 @@ const Grid2 = () => {
           <Paper elevation={3} style={{ padding: 10, alignItems: "center" }}>
             <div style={{ flexGrow: 1, textAlign: "left" }}>
               <Typography variant="h5" style={{ fontWeight: "bold" }}>
-                Website Visits 
+              Conversion Rates
               </Typography>
               <Typography variant="h6" >
                (+43%) than last year
               </Typography>
             </div>
-            <Chart />
+            <BarChart/>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper elevation={3} style={{ padding: 10, alignItems: "center" }}>
             <div style={{ flexGrow: 1, textAlign: "left" }}>
               <Typography variant="h5" style={{ fontWeight: "bold" }}>
-                Current Visits
+                Current Subject
               </Typography>
             </div>
             <div style={{ padding: 20, display: "flex", alignItems: "center" }}>
               {/* <BasicPie/> */}
-              <PieArcLabel />
+             <SpiderChart/>
             </div>
           </Paper>
         </Grid>
