@@ -25,8 +25,8 @@ const PieArcLabel = () => {
         options={options}
         series={data.map((item) => item.value)}
         type="pie"
-        width={450}
-        height={750}
+        width={480}
+        height={550}
       />
     </div>
   );

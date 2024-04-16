@@ -14,6 +14,7 @@ import { Link } from "react-router-dom"; // Assuming you're using React Router f
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
 import Logo from "../assets/Logo.jpg";
+import { Paper } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -45,27 +46,103 @@ export default function ClippedDrawer() {
         <Toolbar />
         <Box sx={{ overflow: "auto" }}>
           <List>
-            <ListItem sx={{ justifyContent: "center", paddingBottom: 0 }}>
-                       <Avatar alt={name} src={Logo} />          
-            </ListItem>
+            {/* Logo */}
+            <Paper
+              elevation={2}
+              style={{ padding: 10, display: "flex", alignItems: "center" }}
+            >
+              <ListItem sx={{ justifyContent: "center", paddingBottom: 0 }}>
+                <Avatar alt={name} src={Logo} />
+              </ListItem>
+            </Paper>
             <Divider />
+
             {/* Dashboard Link */}
-            <ListItem button component={Link} to="/dashboard">
-              <ListItemIcon>
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
-            <Divider />
+           {/*  <Paper
+              // elevation={1}
+              // style={{ padding: 10, display: "flex", alignItems: "center" }}
+            > */}
+              <ListItem button component={Link} to="/dashboard">
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <span
+                     /*  style={{
+                        fontSize: "20px",
+                        fontFamily: '"Public Sans", sans-serif',
+                        fontWeight: 600,
+                        color: "rgb(24, 119, 242)",
+                      }} */
+                    >
+                      Dashboard
+                    </span>
+                  }
+                />
+              </ListItem>
+            {/* </Paper> */}
+        <Divider/>
+
             {/* Users Link */}
+           
+              <ListItem button component={Link} to="/users">
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <span
+                     /*  style={{
+                        fontSize: "20px",
+                        fontFamily: '"Public Sans", sans-serif',
+                        fontWeight: 600,
+                         color: "rgb(24, 119, 242)",
+                      }} */
+                    >
+                      Users
+                    </span>
+                  }
+                />
+              </ListItem>
+            {/* </Paper> */}
+          <Divider/>
+            {/* Product Link */}
             <ListItem button component={Link} to="/users">
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
-              <ListItemText primary="Users" />
+              <ListItemText primary="Product" />
             </ListItem>
+            <Divider />
+
+            {/* Blog Link */}
+            <ListItem button component={Link} to="/users">
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Blog" />
+            </ListItem>
+            <Divider />
+
+            {/* Login Link */}
+            <ListItem button component={Link} to="/users">
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Login" />
+            </ListItem>
+            <Divider />
+
+            {/* Not Found Link */}
+            <ListItem button component={Link} to="/users">
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Not Found" />
+            </ListItem>
+            <Divider />
           </List>
-          <Divider />
         </Box>
       </Drawer>
     </Box>

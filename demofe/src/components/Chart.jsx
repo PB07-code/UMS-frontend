@@ -9,7 +9,7 @@ class Chart extends React.Component {
             options: {
                 chart: {
                     id: 'mixed-chart',
-                    height: 450,
+                    height: 350,
                     toolbar: {
                         show: false
                     }
@@ -22,15 +22,15 @@ class Chart extends React.Component {
                 }
             },
             series: [{
-                name: 'Line',
+                name: 'Team A',
                 type: 'line',
                 data: [430, 340, 435, 350, 349, 460, 370, 291, 325],
             },{
-                name: 'Bar',
+                name: 'Team B',
                 type: 'bar',
                 data: [10, 90, 15, 150, 49, 160, 70, 191, 25]
             },{
-                name: 'Line',
+                name: 'Team C',
                 type: 'line',
                 data: [300,209, 215, 250, 300, 360, 280, 200, 300]
             }]
@@ -40,7 +40,7 @@ class Chart extends React.Component {
     render() {
         return (
             <div id="chart">
-                <ReactApexChart options={this.state.options} series={this.state.series}  height={450} />
+                <ReactApexChart options={this.state.options} series={this.state.series}  height={340} />
             </div>
         );
     }
