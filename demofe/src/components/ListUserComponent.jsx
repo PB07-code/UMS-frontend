@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { listUsers, deleteUser } from "../services/UserService";
 import { useNavigate } from 'react-router-dom';
@@ -6,20 +6,20 @@ import { useNavigate } from 'react-router-dom';
 const ListUserComponent = () => {
   
   const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(5); // Number of users per page
   const navigator = useNavigate();
 
   useEffect(() => {
     getAllUsers();
-  }, []);
+  }, []); // Fetch users once on component mount
 
   function getAllUsers() {
-    listUsers()
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    listUsers().then((response) => {
+      setUsers(response.data);
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 
   function addNewUser() {
@@ -31,14 +31,22 @@ const ListUserComponent = () => {
   }
 
   function removeUser(id) {
-    console.log(id);
-
     deleteUser(id).then(() => {
+      // If successful, refresh the user list for the current page
       getAllUsers();
     }).catch(error => {
       console.error(error);
     });
   }
+
+  function goToPage(page) {
+    setCurrentPage(page);
+  }
+
+  // Calculate the users to display for the current page
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const usersForPage = users.slice(startIndex, endIndex);
 
   return (
     <div className="container">
@@ -60,7 +68,7 @@ const ListUserComponent = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map((user) => (
+            {usersForPage.map((user) => (
               <TableRow key={user.userId}>
                 <TableCell>{user.userId}</TableCell>
                 <TableCell>{user.userName}</TableCell>
@@ -77,8 +85,12 @@ const ListUserComponent = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <div className="pagination">
+        {Array.from({ length: Math.ceil(users.length / pageSize) }, (_, index) => (
+          <Button key={index} onClick={() => goToPage(index + 1)}>{index + 1}</Button>
+        ))}
+      </div>
     </div>
-    
   );
 };
 
