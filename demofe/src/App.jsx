@@ -48,8 +48,13 @@ function App() {
                     {/* http://localhost:8080/login */}
                   <Route path='/login' element = {<LoginComponent/>}></Route>
 
-                  <Route path='/dashboard' element = {<Dashboard/>}></Route>
-                   {/* <Route path='/drawer' element = {<PermanentDrawerLeft/>}></Route> */}
+                  
+                  <Route path='/dashboard' element = {
+                  <AuthenticatedRoute>
+                  <Dashboard/>
+                  </AuthenticatedRoute> }>
+                  </Route>
+                 
               </Routes>
      </BrowserRouter>
    </>
