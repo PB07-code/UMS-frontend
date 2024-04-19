@@ -20,8 +20,8 @@ const SpiderChart = () => {
   const options = {
     chart: {
       type: 'radar',
-      height: 350,
-      width:450,
+      height: 270,
+      width:400,
     },
     xaxis: {
       categories: ['English', 'History', 'Physics', 'Geography', 'Chinese', 'Maths'], // Example categories
@@ -30,7 +30,7 @@ const SpiderChart = () => {
 
   return (
     <div>
-      <ReactApexChart options={options} series={series} type="radar" height={350} width={500} />
+      <ReactApexChart options={options} series={series} type="radar" height={330} width={500} />
     </div>
   );
 };

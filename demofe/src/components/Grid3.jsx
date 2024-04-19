@@ -20,7 +20,7 @@ const Grid2 = () => {
           </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper elevation={3} style={{ padding: 10, alignItems: "center" }}>
+          <Paper elevation={3} style={{ padding: 10, alignItems: "center", overflow: "auto" }}>
             <div style={{ flexGrow: 1, textAlign: "left" }}>
               <Typography variant="h5" style={{ fontWeight: "bold" }}>
                 Current Subject
