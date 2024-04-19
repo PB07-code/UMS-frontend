@@ -2,6 +2,7 @@ import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import SettingsComponent from "./SettingsComponent";
 
+
 const Navbar = () => {
   const navigate = useNavigate();
 
@@ -19,6 +20,7 @@ const Navbar = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           User Management App
         </Typography>
+        
         <Button color="inherit" onClick={handleRegisterClick}>
           Register
         </Button>
@@ -28,7 +30,9 @@ const Navbar = () => {
 
         <SettingsComponent />
       </Toolbar>
+    
     </AppBar>
+   
   );
 };
 
