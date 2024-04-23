@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { loginAPICall, storeToken, saveLoggedInUser } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
-import { TextField, Button, Grid, Card, CardHeader, CardContent } from "@mui/material";
+import { TextField, Button, Grid, Card, CardHeader, CardContent , Link } from "@mui/material";
 
 const LoginComponent = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isValid, setIsValid] = useState(true);
+    const [error, setError] = useState('');
+
     const navigate = useNavigate();
 
     async function handleLoginForm(e) {
@@ -16,20 +18,24 @@ const LoginComponent = () => {
         const isValidUsername = username.trim() !== '' && regex.test(username);
         setIsValid(isValidUsername);
 
-        await loginAPICall(username, password).then((response) => {
+        try {
+            const response = await loginAPICall(username, password);
             console.log(response.data);
-            const token = 'Basic ' + window.btoa(username + ":" + password);
+          //  const token = 'Basic ' + window.btoa(username + ":" + password);
+            const token = 'Bearer ' + response.data.accessToken;
             saveLoggedInUser(username);
             storeToken(token);
-
-            // navigate("/users");
             navigate("/dashboard");
-
             window.location.reload(false);
-        }).catch(error => {
+        } catch (error) {
             console.error(error);
-        });
+            setError('Invalid username or password. Please try again.'); // Set error message
+        }
     }
+
+    const handleRegisterClick = () => {
+        navigate("/register");
+      };
 
     return (
         <Grid container justifyContent="center">
@@ -64,6 +70,14 @@ const LoginComponent = () => {
                                     <Button type="submit" variant="contained" color="primary">
                                         Submit
                                     </Button>
+                                </Grid>
+                                {error && (
+                                    <Grid item xs={12}>
+                                        <p style={{ color: 'red' }}>{error}</p> {/* Display error message */}
+                                    </Grid>
+                                )}
+                                 <Grid item xs={12}>
+                                    <Link to="/register" onClick={handleRegisterClick} >Register User</Link> {/* Link to register user */}
                                 </Grid>
                             </Grid>
                         </form>
