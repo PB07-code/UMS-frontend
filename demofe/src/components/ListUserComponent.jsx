@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { listUsers, deleteUser } from "../services/UserService";
 import { useNavigate } from 'react-router-dom';
+import { isAdminUser } from '../services/AuthService'
 
 const ListUserComponent = () => {
   
@@ -9,6 +10,8 @@ const ListUserComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(5); // Number of users per page
   const navigator = useNavigate();
+
+  const isAdmin = isAdminUser();
 
   useEffect(() => {
     getAllUsers();
@@ -52,7 +55,10 @@ const ListUserComponent = () => {
     <div className="container">
       <h2 className="text-center"> Current Active Users</h2>
       <div className="col text-center">
+        { 
+            isAdmin &&
         <Button variant="contained" color="primary" onClick={addNewUser}>Add User</Button>
+}
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="users table">
@@ -64,7 +70,10 @@ const ListUserComponent = () => {
               <TableCell>User Phone</TableCell>
               <TableCell>User Address</TableCell>
               <TableCell>User Designation</TableCell>
+              { 
+            isAdmin &&
               <TableCell>Actions</TableCell>
+}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -77,8 +86,14 @@ const ListUserComponent = () => {
                 <TableCell>{user.userAddress}</TableCell>
                 <TableCell>{user.userDesignation}</TableCell>
                 <TableCell>
+                  { 
+            isAdmin &&
                   <Button variant="contained" color="primary" onClick={() => updateUser(user.userId)}>Update</Button>
+}
+                 { 
+            isAdmin &&
                   <Button variant="contained" color="secondary" style={{ marginLeft: "10px" }} onClick={() => removeUser(user.userId)}>Delete</Button>
+                 }
                 </TableCell>
               </TableRow>
             ))}

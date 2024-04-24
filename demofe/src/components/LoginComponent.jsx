@@ -23,7 +23,8 @@ const LoginComponent = () => {
             console.log(response.data);
           //  const token = 'Basic ' + window.btoa(username + ":" + password);
             const token = 'Bearer ' + response.data.accessToken;
-            saveLoggedInUser(username);
+            const role = response.data.role;
+            saveLoggedInUser(username,role);
             storeToken(token);
             navigate("/dashboard");
             window.location.reload(false);
