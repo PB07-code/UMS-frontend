@@ -3,6 +3,7 @@ import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import { listUsers, deleteUser } from "../services/UserService";
 import { useNavigate } from 'react-router-dom';
 import { isAdminUser } from '../services/AuthService'
+import ClippedDrawer from './ClippedDrawer'
 
 const ListUserComponent = () => {
   
@@ -52,6 +53,9 @@ const ListUserComponent = () => {
   const usersForPage = users.slice(startIndex, endIndex);
 
   return (
+    <>
+    <br/>
+    <ClippedDrawer/>
     <div className="container">
       <h2 className="text-center"> Current Active Users</h2>
       <div className="col text-center">
@@ -106,6 +110,7 @@ const ListUserComponent = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
