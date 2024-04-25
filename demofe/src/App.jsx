@@ -8,11 +8,11 @@ import LoginComponent from './components/LoginComponent'
 import { isUserLoggedIn } from './services/AuthService'
 import Navbar from './components/Navbar'
 import Dashboard from './components/Dashboard'
-
+import PropTypes from 'prop-types';
 
 function App() {
 
-  function AuthenticatedRoute({ children }) {
+  function AuthenticatedRoute({children}) {
     const isAuth = isUserLoggedIn();
 
     if (isAuth) {
@@ -22,6 +22,9 @@ function App() {
     return <Navigate to="/" />;
   }
 
+  AuthenticatedRoute.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
  
  return (
    <>

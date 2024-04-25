@@ -39,6 +39,8 @@ const LoginComponent = () => {
       };
 
     return (
+        <>
+        <br></br>
         <Grid container justifyContent="center">
             <Grid item xs={12} sm={8} md={6}>
                 <Card variant="outlined">
@@ -86,6 +88,7 @@ const LoginComponent = () => {
                 </Card>
             </Grid>
         </Grid>
+        </>
     );
 }
 

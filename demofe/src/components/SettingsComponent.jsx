@@ -12,18 +12,18 @@ const SettingsComponent = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleUsersClick = () => {
+  /* const handleUsersClick = () => {
     navigate("/users");
-  };
+  }; */
 
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleDashboardClick =()=>{
+ /*  const handleDashboardClick =()=>{
     navigate("/dashboard")
-   }
+   } */
   const handleLogout = () => {
     logout();
     navigate('/login');
@@ -50,8 +50,8 @@ const SettingsComponent = () => {
         }}
       >
         
-        <MenuItem onClick={handleUsersClick}>Users</MenuItem>
-        <MenuItem onClick={handleDashboardClick}>Dashboard</MenuItem>
+       {/*  <MenuItem onClick={handleUsersClick}>Users</MenuItem>
+        <MenuItem onClick={handleDashboardClick}>Dashboard</MenuItem> */}
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
         
       </Menu>
