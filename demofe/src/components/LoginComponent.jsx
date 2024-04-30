@@ -80,7 +80,7 @@ const LoginComponent = () => {
                                     </Grid>
                                 )}
                                  <Grid item xs={12}>
-                                    <Link to="/register" onClick={handleRegisterClick} >Register User</Link> {/* Link to register user */}
+                                    <Link to="/register" onClick={handleRegisterClick} >Register </Link> {/* Link to register user */}
                                 </Grid>
                             </Grid>
                         </form>

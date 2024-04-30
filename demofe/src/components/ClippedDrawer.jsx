@@ -51,7 +51,7 @@ export default function ClippedDrawer() {
         <Box sx={{ overflow: "auto" }}>
           <List>
             {/* Logo */}
-            <Paper
+          {/*   <Paper
               elevation={2}
               style={{ padding: 10, display: "flex", alignItems: "center" }}
             >
@@ -59,7 +59,7 @@ export default function ClippedDrawer() {
                 <Avatar alt={name} src={Logo} sx={{height: 100, width: 100}} />
               </ListItem>
             </Paper>
-            <Divider />
+            <Divider /> */}
 
             {/* Dashboard Link */}
            {/*  <Paper
