@@ -9,6 +9,7 @@ import { isUserLoggedIn } from './services/AuthService'
 import Navbar from './components/Navbar'
 import Dashboard from './components/Dashboard'
 import PropTypes from 'prop-types';
+import ListAgents from './components/ListAgents'
 
 function App() {
 
@@ -58,6 +59,14 @@ function App() {
                   </AuthenticatedRoute> }>
                   </Route>
                  
+                  <Route path='/agents' element ={
+                 <AuthenticatedRoute>
+                       <ListAgents />  
+                  </AuthenticatedRoute> 
+                  }>
+
+                </Route>
+                  
               </Routes>
      </BrowserRouter>
    </>

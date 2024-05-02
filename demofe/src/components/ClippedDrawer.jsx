@@ -9,11 +9,11 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Avatar from "@mui/material/Avatar";
+
 import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
-import Logo from "../assets/Logo.jpg";
+
 import illustration_avatar from "../assets/illustration_avatar.png";
 import { Paper } from "@mui/material";
 import Navbar from "./Navbar";
@@ -50,22 +50,7 @@ export default function ClippedDrawer() {
         <Toolbar />
         <Box sx={{ overflow: "auto" }}>
           <List>
-            {/* Logo */}
-          {/*   <Paper
-              elevation={2}
-              style={{ padding: 10, display: "flex", alignItems: "center" }}
-            >
-              <ListItem sx={{ justifyContent: "center", paddingBottom: 0 }}>
-                <Avatar alt={name} src={Logo} sx={{height: 100, width: 100}} />
-              </ListItem>
-            </Paper>
-            <Divider /> */}
-
-            {/* Dashboard Link */}
-           {/*  <Paper
-              // elevation={1}
-              // style={{ padding: 10, display: "flex", alignItems: "center" }}
-            > */}
+       
               <ListItem button component={Link} to="/dashboard">
                 <ListItemIcon>
                   <DashboardIcon />
@@ -96,15 +81,9 @@ export default function ClippedDrawer() {
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <span
-                     /*  style={{
-                        fontSize: "20px",
-                        fontFamily: '"Public Sans", sans-serif',
-                        fontWeight: 600,
-                         color: "rgb(24, 119, 242)",
-                      }} */
-                    >
-                      Users
+                    <span>
+                                     
+                     Search User
                     </span>
                   }
                 />
@@ -112,40 +91,40 @@ export default function ClippedDrawer() {
             {/* </Paper> */}
           <Divider/>
             {/* Product Link */}
-            <ListItem button component={Link} to="/users">
+            <ListItem button component={Link} to="/agents">
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
-              <ListItemText primary="Product" />
+              <ListItemText primary="Manage Agents" />
             </ListItem>
             <Divider />
 
             {/* Blog Link */}
-            <ListItem button component={Link} to="/users">
+          {/*   <ListItem button component={Link} to="/users">
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
-              <ListItemText primary="Blog" />
+              <ListItemText primary="Deleted Users" />
             </ListItem>
-            <Divider />
+            <Divider /> */}
 
             {/* Login Link */}
-            <ListItem button component={Link} to="/users">
+           {/*  <ListItem button component={Link} to="/users">
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
               <ListItemText primary="Login" />
             </ListItem>
-            <Divider />
+            <Divider /> */}
 
             {/* Not Found Link */}
-            <ListItem button component={Link} to="/users">
+           {/*  <ListItem button component={Link} to="/users">
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
               <ListItemText primary="Not Found" />
-            </ListItem>
-            <Divider />
+            </ListItem> 
+            <Divider />  */}
           </List>
 
                 

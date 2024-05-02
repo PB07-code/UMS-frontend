@@ -3,6 +3,7 @@ import newUsers from "../assets/newUsers.png";
 import glass_bag from "../assets/glass_bag.png";
 import glass_orders from "../assets/glass_orders.png";
 import glass_bugreports from "../assets/glass_bugreports.png";
+import UserCount from "./UserCount";
 
 const CustomWidgets = () => {
   return (
@@ -36,10 +37,10 @@ const CustomWidgets = () => {
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="h4" gutterBottom align="left">
-                  714k
+                  714K
                 </Typography>
                 <Typography variant="body1" align="left">
-                  Weekly Sales
+                 Active Users
                 </Typography>
               </Grid>
             </Grid>
