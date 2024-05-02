@@ -4,6 +4,8 @@ import SettingsComponent from "./SettingsComponent";
 import { isUserLoggedIn } from "../services/AuthService";
 import Avatar from "@mui/material/Avatar";
 import Logo from "../assets/Logo.jpg";
+import NotificationComponent from "./NotificationComponent";
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -36,9 +38,16 @@ const Navbar = () => {
           Login
         </Button>
 }
+
+{ isLoggedIn &&
+<NotificationComponent/>
+}
+
 { isLoggedIn &&
         <SettingsComponent />
 }
+
+
       </Toolbar>
     
     </AppBar>

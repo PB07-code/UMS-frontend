@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { isAdminUser } from '../services/AuthService'
 import ClippedDrawer from './ClippedDrawer'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-// import EditIcon from '@mui/icons-material/Edit';
+ import EditIcon from '@mui/icons-material/Edit';
 
 
 
@@ -84,7 +84,7 @@ const ListUserComponent = () => {
     <ClippedDrawer/>
     
     <div className="container">
-      <h2 className="text-center"> Current Active Users</h2>
+      <h2 className="text-center"> Active Users</h2>
       
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         { 
@@ -116,7 +116,7 @@ const ListUserComponent = () => {
           </TableHead>
           <TableBody>
             {usersForPage.map((user) => (
-              <TableRow key={user.userId} onClick={() => updateUser(user.userId)}>
+              <TableRow key={user.userId}>
                 <TableCell>{user.userName}</TableCell>
                 <TableCell>{user.userEmail}</TableCell>
                 <TableCell>{user.userPhone}</TableCell>
@@ -126,7 +126,7 @@ const ListUserComponent = () => {
                   { 
                     isAdmin &&
                     <>
-                      {/* <EditIcon style={{ color: 'green' }} onClick={() => updateUser(user.userId)} /> */}
+                       <EditIcon style={{ color: 'green' }} onClick={() => updateUser(user.userId)} /> 
                       <span style={{ margin: '0 10px' }}></span> 
                       <DeleteOutlineIcon style={{ color: 'red' }} onClick={() => removeUser(user.userId)} />
                     </>
