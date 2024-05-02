@@ -4,6 +4,7 @@ import { createUser, getUser, updateUser } from '../services/UserService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 
+
 const UserComponent = () => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -61,6 +62,8 @@ const UserComponent = () => {
     return id ? <Typography variant="h5" align="center">Update User</Typography> : <Typography variant="h5" align="center">Add User</Typography>;
   };
 
+  
+
   return (
    <>
    <br/>
@@ -113,6 +116,7 @@ const UserComponent = () => {
               onChange={(e) => setUserDesignation(e.target.value)}
             />
             <Button type="submit" variant="contained" color="primary" style={{ marginRight: '10px' }}>Submit</Button>
+           
             <Button variant="contained" color="secondary" onClick={() => navigate('/users')}>Cancel</Button>
           </form>
         </Grid>
