@@ -36,6 +36,8 @@ export const logout = () => {
 } 
 
 
+
+
 export const isAdminUser = () => {
 
     let role = sessionStorage.getItem("role");
@@ -46,4 +48,7 @@ export const isAdminUser = () => {
         return false;
     }
 
+   
 }
+
+export const listAgents = () => axios.get(AUTH_REST_API_BASE_URL + + '/agents');
