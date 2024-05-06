@@ -1,29 +1,46 @@
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import PropTypes from 'prop-types';
-import { Typography, Paper } from '@mui/material';
+import { Badge, Menu, MenuItem } from '@mui/material';
+import { useState } from 'react';
 
 const NotificationComponent = () => {
- // const username = sessionStorage.getItem('username');
-  const message = sessionStorage.getItem('message');
+  const [anchorEl, setAnchorEl] = useState(null);
+  const messageLength = sessionStorage.getItem('messageLength');
 
-  const storedMessage =  message ? ` ${message}` : null;
+  const handleOpenMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const message = sessionStorage.getItem('message');
+  const storedMessage = message ? message.split(',') : []; // Split message into an array
 
   return (
     <div>
-      {storedMessage && (
-        <Paper style={{ padding: '10px', margin: '10px', background: '#f0f2f5', borderRadius: '5px' }}>
-          <Typography variant="body1" style={{ color: '#1c1e21', fontWeight: 'bold' }}>
-            <NotificationsIcon style={{ color: '#3b5998', marginRight: '5px' }} />
-            {storedMessage}
-          </Typography>
-        </Paper>
-      )}
+      <Badge badgeContent={messageLength} color="error">
+        <NotificationsIcon onClick={handleOpenMenu} style={{ cursor: 'pointer' }} />
+      </Badge>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleCloseMenu}
+      >
+        {storedMessage.length > 0 ? (
+          storedMessage.map((item, index) => (
+            <MenuItem key={index} onClick={handleCloseMenu}>
+              {item.trim()} {/* Trim to remove any leading/trailing spaces */}
+            </MenuItem>
+          ))
+        ) : (
+          <MenuItem onClick={handleCloseMenu}>
+            No new notifications
+          </MenuItem>
+        )}
+      </Menu>
     </div>
   );
 }
-
-NotificationComponent.propTypes = {
-  message: PropTypes.string
-};
 
 export default NotificationComponent;
