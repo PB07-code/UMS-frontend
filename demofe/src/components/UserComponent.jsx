@@ -46,9 +46,23 @@ const UserComponent = () => {
       updateUser(id, user)
         .then(response => {
           console.log(response.data);
-          setMessage(response.data.message);// set message from API response
-          sessionStorage.setItem("message", response.data.message);
-          sessionStorage.setItem("username",user.userName);
+         // setMessage(response.data.message);// set message from API response
+         // sessionStorage.setItem("message", response.data.message);
+          //sessionStorage.setItem("username",user.userName);
+                  // Retrieve existing messages from session storage
+let existingMessages = JSON.parse(sessionStorage.getItem('message')) || [];
+
+// Example new message from the backend
+let newMessage = user.userName + " : " + response.data.message;
+
+// Append the new message to the existing list
+existingMessages.push(newMessage);
+
+// Store the updated list back into session storage
+      sessionStorage.setItem('message', JSON.stringify(existingMessages));
+
+      let messageLength = existingMessages.length;
+      sessionStorage.setItem('messageLength',messageLength);
           navigate('/users');
         })
         .catch(error => {
@@ -58,7 +72,7 @@ const UserComponent = () => {
       createUser(user)
         .then(response => {
           console.log("Logs after Adding a User")
-          setMessage(response.data.message); // set message from API response
+        //  setMessage(response.data.message); // set message from API response
           /* sessionStorage.setItem("message", response.data.message);
           sessionStorage.setItem("username",user.userName); */
         //  sessionStorage.setItem('message' , user.userName + " : " + response.data.message  );
