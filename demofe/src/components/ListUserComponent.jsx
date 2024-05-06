@@ -1,27 +1,33 @@
 import { useState, useEffect } from "react";
-import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
+import {
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  TextField,
+} from "@mui/material";
 import { listUsers, deleteUser } from "../services/UserService";
-import { useNavigate } from 'react-router-dom';
-import { isAdminUser } from '../services/AuthService'
-import ClippedDrawer from './ClippedDrawer'
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
- import EditIcon from '@mui/icons-material/Edit';
-
-
+import { useNavigate } from "react-router-dom";
+import { isAdminUser } from "../services/AuthService";
+import ClippedDrawer from "./ClippedDrawer";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditIcon from "@mui/icons-material/Edit";
 
 const ListUserComponent = () => {
-  
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(5); // Number of users per page
   const [searchQuery, setSearchQuery] = useState("");
   const navigator = useNavigate();
 
-
   const cellStyle = {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 'large',
+    color: "blue",
+    fontWeight: "bold",
+    fontSize: "large",
   };
 
   const isAdmin = isAdminUser();
@@ -31,15 +37,17 @@ const ListUserComponent = () => {
   }, []); // Fetch users once on component mount
 
   function getAllUsers() {
-    listUsers().then((response) => {
-      setUsers(response.data);
-    }).catch((error) => {
-      console.error(error);
-    });
+    listUsers()
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   function addNewUser() {
-    navigator('/add-user');
+    navigator("/add-user");
   }
 
   function updateUser(id) {
@@ -47,12 +55,33 @@ const ListUserComponent = () => {
   }
 
   function removeUser(id) {
-    deleteUser(id).then(() => {
-      // If successful, refresh the user list for the current page
-      getAllUsers();
-    }).catch(error => {
-      console.error(error);
-    });
+    deleteUser(id)
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.data.userDto.userName);
+        // Retrieve existing messages from session storage
+        let existingMessages =
+          JSON.parse(sessionStorage.getItem("message")) || [];
+
+        // Example new message from the backend
+        let newMessage =
+          response.data.userDto.userName + " : " + response.data.message;
+
+        // Append the new message to the existing list
+        existingMessages.push(newMessage);
+
+        // Store the updated list back into session storage
+        sessionStorage.setItem("message", JSON.stringify(existingMessages));
+
+        let messageLength = existingMessages.length;
+        sessionStorage.setItem("messageLength", messageLength);
+
+        // If successful, refresh the user list for the current page
+        getAllUsers();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   function handleSearchChange(event) {
@@ -64,13 +93,14 @@ const ListUserComponent = () => {
   }
 
   // Filter users based on search query
-  const filteredUsers = users.filter(user =>
-    user.userName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    user.userEmail.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    user.userPhone.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    user.userAddress.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    user.userDesignation.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    user.isDeleted.toLowerCase().includes(searchQuery.toLowerCase()) 
+  const filteredUsers = users.filter(
+    (user) =>
+      user.userName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.userEmail.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.userPhone.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.userAddress.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.userDesignation.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.isDeleted.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Calculate the users to display for the current page
@@ -80,69 +110,83 @@ const ListUserComponent = () => {
 
   return (
     <>
-    <br/>
-    <ClippedDrawer/>
-    
-    <div className="container">
-      <h2 className="text-center"> Active Users</h2>
-      
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        { 
-          isAdmin &&
-          <Button variant="contained" color="primary" onClick={addNewUser}>Add User</Button>
-        }
-        <TextField
-          label="Search"
-          variant="outlined"
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
-      </div>
-      <br></br>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="users table">
-          <TableHead>
-            <TableRow>
-              <TableCell style={cellStyle}>User Name</TableCell>
-              <TableCell style={cellStyle}>User Email</TableCell>
-              <TableCell style={cellStyle}>User Phone</TableCell>
-              <TableCell style={cellStyle}>User Address</TableCell>
-              <TableCell style={cellStyle}>User Designation</TableCell>
-              { 
-                isAdmin &&
-                <TableCell style={cellStyle}>Actions</TableCell>
-              }
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {usersForPage.map((user) => (
-              <TableRow key={user.userId}>
-                <TableCell>{user.userName}</TableCell>
-                <TableCell>{user.userEmail}</TableCell>
-                <TableCell>{user.userPhone}</TableCell>
-                <TableCell>{user.userAddress}</TableCell>
-                <TableCell>{user.userDesignation}</TableCell>
-                <TableCell>
-                  { 
-                    isAdmin &&
-                    <>
-                       <EditIcon style={{ color: 'green' }} onClick={() => updateUser(user.userId)} /> 
-                      <span style={{ margin: '0 10px' }}></span> 
-                      <DeleteOutlineIcon style={{ color: 'red' }} onClick={() => removeUser(user.userId)} />
-                    </>
-                  }
-                </TableCell>
+      <br />
+      <ClippedDrawer />
+
+      <div className="container">
+        <h2 className="text-center"> Active Users</h2>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {isAdmin && (
+            <Button variant="contained" color="primary" onClick={addNewUser}>
+              Add User
+            </Button>
+          )}
+          <TextField
+            label="Search"
+            variant="outlined"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </div>
+        <br></br>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="users table">
+            <TableHead>
+              <TableRow>
+                <TableCell style={cellStyle}>User Name</TableCell>
+                <TableCell style={cellStyle}>User Email</TableCell>
+                <TableCell style={cellStyle}>User Phone</TableCell>
+                <TableCell style={cellStyle}>User Address</TableCell>
+                <TableCell style={cellStyle}>User Designation</TableCell>
+                {isAdmin && <TableCell style={cellStyle}>Actions</TableCell>}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <div className="pagination">
-        {Array.from({ length: Math.ceil(filteredUsers.length / pageSize) }, (_, index) => (
-          <Button key={index} onClick={() => goToPage(index + 1)}>{index + 1}</Button>
-        ))}
+            </TableHead>
+            <TableBody>
+              {usersForPage.map((user) => (
+                <TableRow key={user.userId}>
+                  <TableCell>{user.userName}</TableCell>
+                  <TableCell>{user.userEmail}</TableCell>
+                  <TableCell>{user.userPhone}</TableCell>
+                  <TableCell>{user.userAddress}</TableCell>
+                  <TableCell>{user.userDesignation}</TableCell>
+                  <TableCell>
+                    {isAdmin && (
+                      <>
+                        <EditIcon
+                          style={{ color: "green" }}
+                          onClick={() => updateUser(user.userId)}
+                        />
+                        <span style={{ margin: "0 10px" }}></span>
+                        <DeleteOutlineIcon
+                          style={{ color: "red" }}
+                          onClick={() => removeUser(user.userId)}
+                        />
+                      </>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <div className="pagination">
+          {Array.from(
+            { length: Math.ceil(filteredUsers.length / pageSize) },
+            (_, index) => (
+              <Button key={index} onClick={() => goToPage(index + 1)}>
+                {index + 1}
+              </Button>
+            )
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 };
