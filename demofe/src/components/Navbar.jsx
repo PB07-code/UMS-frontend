@@ -40,11 +40,15 @@ const Navbar = () => {
 }
 
 { isLoggedIn &&
+  <div style={{ marginLeft: '20px' }}>
 <NotificationComponent/>
+</div>
 }
 
 { isLoggedIn &&
+  <div style={{ marginLeft: '20px' }}>
         <SettingsComponent />
+        </div>
 }
 
 

@@ -61,7 +61,21 @@ const UserComponent = () => {
           setMessage(response.data.message); // set message from API response
           /* sessionStorage.setItem("message", response.data.message);
           sessionStorage.setItem("username",user.userName); */
-          sessionStorage.setItem('message' , user.userName + " : " + response.data.message  );
+        //  sessionStorage.setItem('message' , user.userName + " : " + response.data.message  );
+        // Retrieve existing messages from session storage
+let existingMessages = JSON.parse(sessionStorage.getItem('message')) || [];
+
+// Example new message from the backend
+let newMessage = user.userName + " : " + response.data.message;
+
+// Append the new message to the existing list
+existingMessages.push(newMessage);
+
+// Store the updated list back into session storage
+      sessionStorage.setItem('message', JSON.stringify(existingMessages));
+
+      let messageLength = existingMessages.length;
+      sessionStorage.setItem('messageLength',messageLength);
           console.log(response.data);
           console.log("Logs of UserMessage")
         console.log(response.data.message);
