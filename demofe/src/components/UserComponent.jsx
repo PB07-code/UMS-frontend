@@ -2,9 +2,7 @@ import  { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Container, Grid } from '@mui/material';
 import { createUser, getUser, updateUser } from '../services/UserService';
 import { useNavigate, useParams } from 'react-router-dom';
-import NotificationComponent from './NotificationComponent';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import Navbar from './Navbar';
+
 
 const UserComponent = () => {
   const [userName, setUserName] = useState('');
@@ -12,8 +10,9 @@ const UserComponent = () => {
   const [userPhone, setUserPhone] = useState('');
   const [userAddress, setUserAddress] = useState('');
   const [userDesignation, setUserDesignation] = useState('');
-  const [message, setMessage] = useState(''); 
+  //const [message, setMessage] = useState(''); 
 
+  const message ="";
   const { id } = useParams();
   const navigate = useNavigate();
 
