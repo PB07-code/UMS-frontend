@@ -25,4 +25,6 @@ export const deleteUser = (userId) => axios.delete(REST_API_BASE_URL + '/' + use
 
 export const updateUser = (userId, user) => axios.put(REST_API_BASE_URL + '/' + userId, user);
 
+export const listTotalUsers = () => axios.get(REST_API_BASE_URL + '/getTotalUsers')
 
+export const listRemovedUsers = () => axios.get(REST_API_BASE_URL + '/getRemovedUsers')
