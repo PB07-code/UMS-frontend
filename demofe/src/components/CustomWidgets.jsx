@@ -4,6 +4,9 @@ import glass_bag from "../assets/glass_bag.png";
 import glass_orders from "../assets/glass_orders.png";
 import glass_bugreports from "../assets/glass_bugreports.png";
 import UserCount from "./UserCount";
+import TotalUsersCount from "./TotalUsersCount";
+import RemovedUsers from "./RemovedUsers";
+import TotalAgentsCount from "./TotalAgentsCount";
 
 const CustomWidgets = () => {
   return (
@@ -37,10 +40,10 @@ const CustomWidgets = () => {
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="h4" gutterBottom align="left">
-                  714K
+                  <TotalUsersCount/>
                 </Typography>
-                <Typography variant="body1" align="left">
-                 Active Users
+                <Typography variant="h6" align="left">
+                Total Users Created
                 </Typography>
               </Grid>
             </Grid>
@@ -69,10 +72,10 @@ const CustomWidgets = () => {
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="h4" gutterBottom align="left">
-                  1.35m
+                  <UserCount/>
                 </Typography>
-                <Typography variant="body1" align="left">
-                  New Users
+                <Typography variant="h6" align="left">
+                  Active Users
                 </Typography>
               </Grid>
             </Grid>
@@ -101,10 +104,10 @@ const CustomWidgets = () => {
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="h4" gutterBottom align="left">
-                  1.72m
+                  <RemovedUsers/>
                 </Typography>
-                <Typography variant="body1" align="left">
-                  Item Orders
+                <Typography variant="h6" align="left">
+                  Removed Users
                 </Typography>
               </Grid>
             </Grid>
@@ -133,10 +136,10 @@ const CustomWidgets = () => {
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="h4" gutterBottom align="left">
-                  234
+                  <TotalAgentsCount/>
                 </Typography>
                 <Typography variant="body1" align="left">
-                  Bug Reports
+                  Total Agents
                 </Typography>
               </Grid>
             </Grid>

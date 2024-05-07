@@ -2,14 +2,15 @@ import  { useState, useEffect } from 'react';
 import { listUsers } from '../services/UserService';
 
 function UserCount() {
-  const [totalUsers, setTotalUsers] = useState(0);
+  const [activeUsers, setActiveUsers] = useState(0);
 
   useEffect(() => {
     // Fetch list of users
     listUsers()
-      .then(users => {
+      .then(response => {
         // Calculate total number of users
-        setTotalUsers(users.length);
+        setActiveUsers(response.data.length);
+       
       })
       .catch(error => {
         console.error('Error fetching users:', error);
@@ -18,7 +19,7 @@ function UserCount() {
 
   return (
     <div>
-      <h2>Total Users: {totalUsers}</h2>
+      <h2> {activeUsers}</h2>
     </div>
   );
 }

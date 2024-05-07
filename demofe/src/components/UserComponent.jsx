@@ -77,7 +77,7 @@ existingMessages.push(newMessage);
           sessionStorage.setItem("username",user.userName); */
         //  sessionStorage.setItem('message' , user.userName + " : " + response.data.message  );
         // Retrieve existing messages from session storage
-let existingMessages = JSON.parse(sessionStorage.getItem('message')) || [];
+let existingMessages =JSON.parse(sessionStorage.getItem('message')) || [];
 
 // Example new message from the backend
 let newMessage = user.userName + " : " + response.data.message;
@@ -86,7 +86,7 @@ let newMessage = user.userName + " : " + response.data.message;
 existingMessages.push(newMessage);
 
 // Store the updated list back into session storage
-      sessionStorage.setItem('message', JSON.stringify(existingMessages));
+      sessionStorage.setItem('message',JSON.stringify(existingMessages) );
 
       let messageLength = existingMessages.length;
       sessionStorage.setItem('messageLength',messageLength);
