@@ -52,3 +52,5 @@ export const isAdminUser = () => {
 }
 
 export const listAgents = () => axios.get(AUTH_REST_API_BASE_URL + '/agents');
+
+export const updateAgentRole = (agentId, newRole) => axios.put(AUTH_REST_API_BASE_URL + '/' + agentId + '?' + 'role='+ newRole);
