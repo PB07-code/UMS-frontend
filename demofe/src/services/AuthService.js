@@ -35,9 +35,6 @@ export const logout = () => {
     sessionStorage.clear();
 } 
 
-
-
-
 export const isAdminUser = () => {
 
     let role = sessionStorage.getItem("role");

@@ -7,6 +7,10 @@ import UserCount from "./UserCount";
 import TotalUsersCount from "./TotalUsersCount";
 import RemovedUsers from "./RemovedUsers";
 import TotalAgentsCount from "./TotalAgentsCount";
+import TotalUsers from "../assets/TotalUsers.png";
+import ActiveUsers from "../assets/ActiveUsers.png";
+import UsersRemoved from "../assets/UsersRemoved.png";
+import TotalAgents from "../assets/TotalAgents.png";
 
 const CustomWidgets = () => {
   return (
@@ -33,8 +37,8 @@ const CustomWidgets = () => {
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <img
-                  src={glass_bag}
-                  alt="Weekly Sales"
+                  src={TotalUsers}
+                  alt="TotalUsersCreated"
                   style={{ width: "100%", height: "auto" }}
                 />
               </Grid>
@@ -65,8 +69,8 @@ const CustomWidgets = () => {
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <img
-                  src={newUsers}
-                  alt="New Users"
+                  src={ActiveUsers}
+                  alt="Active Users"
                   style={{ width: "100%", height: "auto" }}
                 />
               </Grid>
@@ -97,8 +101,8 @@ const CustomWidgets = () => {
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <img
-                  src={glass_orders}
-                  alt="Item Orders"
+                  src={UsersRemoved}
+                  alt="Removed Users"
                   style={{ width: "100%", height: "auto" }}
                 />
               </Grid>
@@ -129,8 +133,8 @@ const CustomWidgets = () => {
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <img
-                  src={glass_bugreports}
-                  alt="Bug Reports"
+                  src={TotalAgents}
+                  alt="Total Agents"
                   style={{ width: "100%", height: "auto" }}
                 />
               </Grid>
